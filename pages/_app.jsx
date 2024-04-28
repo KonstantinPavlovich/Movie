@@ -46,7 +46,6 @@ function films(inp1,inp2,f3,f4,f5){
      fetch(str).then(response=>response.json(),err=>console.dir(err)).then(obj=>showFilms(obj,f3,f4));
  }
 function Film_cards(m,f){
-  console.dir(f);
   let el, i, str = m.map((el,i)=>
      <><div className="cardf" id="tmpl">
      <img className="pict" id="pict1" src={el.Poster}></img>
@@ -57,16 +56,11 @@ function Film_cards(m,f){
      <button id={el.imdbID} onClick={(event)=>film_about(event,f)}>Подробнее</button>    
   </div>
   </div></>)
-  //
-  //});
-  // console.dir(str);
   return str;
 }
 
    function showFilms(mas,f3,f4){ 
     let elm;
-    console.dir(mas);
-    console.dir(typeof mas.Response);
     if (typeof mas.totalResults == "string"){     //   Если фильмы найдены
       f3("Найдено "+mas.totalResults+" фильмов");
       if (typeof mas.Search == "object") f4(mas.Search);}
@@ -83,7 +77,6 @@ function Film_cards(m,f){
     fetch(str).then(response=>response.json()).then((obj)=>Dop_info(obj,f))};
 
     function Dop_info(obj,f){
-    console.log(obj.Title);
     if (typeof f=="function") f(obj);
     if (typeof obj !== "object") return '';
     return <>
